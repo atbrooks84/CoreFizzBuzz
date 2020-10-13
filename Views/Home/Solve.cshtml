@@ -1,0 +1,32 @@
+﻿<form asp-action="Solve">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4>Fizz:</h4>
+                <input type="text" name="num1" class="form-control" value="3"/>
+            </div>
+            <div class="col">
+                <h4>Buzz:</h4>
+                <input type="text" name="num2" class="form-control" value="5"/>
+            </div>
+            <div class="col">
+                <h4>Start:</h4>
+                <input type="text" name="num3" class="form-control" value="1"/>
+            </div>
+            <div class="col">
+                <h4>End:</h4>
+                <input type="text" name="num4" class="form-control" value="100"/>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-sm-4 offset-4">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+            
+        </div>
+        <hr />
+        <div class="row text-center">
+            @ViewData["Output"]<p class="overflow-auto"></p>
+        </div>
+    </div>
+</form>
