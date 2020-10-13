@@ -31,39 +31,54 @@ namespace CoreFizzBuzz.Controllers
         [HttpGet]
         public IActionResult Solve()
         {
-            
+
             return View();
         }
         [HttpPost]
         public IActionResult Solve(string num1, string num2, string num3, string num4)
         {
-            var fizzNum = Convert.ToInt32(num1);
-            var buzzNum = Convert.ToInt32(num2);
-            var startNum = Convert.ToInt32(num3);
-            var endNum = Convert.ToInt32(num4);
-            var output = new StringBuilder();
+            string numCheck = num1 + num2 + num3 + num4;
 
-            for (var index = startNum; index <= endNum; index++)
+            if (numCheck.All(char.IsDigit))
             {
-                if ((index % fizzNum == 0) && (index % buzzNum == 0))
+                var fizzNum = Convert.ToInt32(num1);
+                var buzzNum = Convert.ToInt32(num2);
+                var startNum = Convert.ToInt32(num3);
+                var endNum = Convert.ToInt32(num4);
+                var output = new StringBuilder();
+
+
+
+                for (var index = startNum; index <= endNum; index++)
                 {
-                    output.Append("FizzBuzz, ");
+
+                    if ((index % fizzNum == 0) && (index % buzzNum == 0))
+                    {
+                        output.Append("FizzBuzz, ");
+                    }
+                    else if (index % fizzNum == 0)
+                    {
+                        output.Append("Fizz, ");
+                    }
+                    else if (index % buzzNum == 0)
+                    {
+                        output.Append("Buzz, ");
+                    }
+                    else
+                    {
+                        output.Append(index.ToString() + ", ");
+                    }
                 }
-                else if (index % fizzNum == 0)
-                {
-                    output.Append("Fizz, ");
-                }
-                else if (index % buzzNum == 0)
-                {
-                    output.Append("Buzz, ");
-                }
-                else
-                {
-                    output.Append(index.ToString() + ", ");
-                }
+                ViewData["Output"] = output.ToString();
+                return View();
+
             }
-            ViewData["Output"] = output.ToString();
-            return View();
+            else
+            {
+                ViewData["Output"] = "Please only use numbers";
+                return View();
+            }
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
